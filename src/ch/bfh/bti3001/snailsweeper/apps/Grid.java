@@ -83,6 +83,9 @@ public class Grid {
 				switch (modelGrid[i][j].getCellState()){
 					case LIVING -> living++;
 					case CRUSHED -> crushed++;
+				case EMPTY -> throw new UnsupportedOperationException("Unimplemented case: " + modelGrid[i][j].getCellState());
+				case SOLID -> throw new UnsupportedOperationException("Unimplemented case: " + modelGrid[i][j].getCellState());
+				default -> throw new IllegalArgumentException("Unexpected value: " + modelGrid[i][j].getCellState());
 				}
 
 
@@ -126,7 +129,7 @@ public class Grid {
 	// toggleFlag allows to change to a flagged State or to return to hidden state
 	// this method also runs on inverted parameters. (test related)
 
-	private void toggleFlag(int i, int j) {
+	public void toggleFlag(int i, int j) {
 		int x = i;
 		i=j;
 		j=x;
@@ -209,12 +212,13 @@ public class Grid {
 		String entry = "  ";
 		int i =0;
 
-		Scanner sc = new Scanner(System.in);
-		System.out.println(printGrid());
+		try (Scanner sc = new Scanner(System.in)) {
+			System.out.println(printGrid());
 
-		while (entry.length()!=3|| !(entry.charAt(0) =='u') && !(entry.charAt(0)=='f')){
-			System.out.println(">");
-			entry = sc.next();
+			while (entry.length()!=3|| !(entry.charAt(0) =='u') && !(entry.charAt(0)=='f')){
+				System.out.println(">");
+				entry = sc.next();
+			}
 		}
 		for (int a =0; a < ALPHABETLOOKUP.length(); a++){
 			if (entry.charAt(1)==ALPHABETLOOKUP.charAt(a)){
@@ -251,6 +255,9 @@ public class Grid {
 							return false;
 						}
 					}
+				case CRUSHED -> throw new UnsupportedOperationException("Unimplemented case: " + cells[a].getCellState());
+				case SOLID -> throw new UnsupportedOperationException("Unimplemented case: " + cells[a].getCellState());
+				default -> throw new IllegalArgumentException("Unexpected value: " + cells[a].getCellState());
 				}
 			}
 		}
