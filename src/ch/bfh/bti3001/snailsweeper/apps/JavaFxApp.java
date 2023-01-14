@@ -1,5 +1,8 @@
 package ch.bfh.bti3001.snailsweeper.apps;
 
+import ch.bfh.bti3001.snailsweeper.apps.Grid;
+import ch.bfh.bti3001.snailsweeper.apps.GridSerializer;
+
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -11,49 +14,38 @@ import javafx.stage.Stage;
 
 public class JavaFxApp extends Application {
 
-//	@Override
-//	public void start(Stage stage) throws Exception {
-//
-//		Label label = new Label("HELLO WORLD");
-//		label.setAlignment(Pos.CENTER);
-//
-//		Scene scene = new Scene();
-//		stage.setScene(scene);
-//		stage.setWidth(600);
-//		stage.setHeight(400);
-//
-//		stage.setTitle("SnailSweeper");
-//		stage.show();
-//
-//	}
-	@Override
-	public void start(Stage stage) throws Exception {
+    @Override
+    public void start(Stage stage) throws Exception {
+        // Create a grid pane to hold the game board
+        GridPane gridPane = new GridPane();
 
-	    Label label = new Label("HELLO WORLD");
-	    label.setAlignment(Pos.CENTER);
+        // Add elements to the grid pane to display the game board
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                Button button = new Button();
+                button.setOnMouseClicked(event -> {
+                    if (event.isControlDown()) {
+                    	Grid.toggleFlag(i, j);
+                    } else {
+                        Grid.uncover(i, j);
+                    }
+                });
+                gridPane.add(button, i, j);
+            }
+        }
 
-	    // Create a GridPane layout
-	    GridPane root = new GridPane();
-	    root.setAlignment(Pos.CENTER);
-	    root.add(label, 0, 0); // add the label to the grid at (0, 0)
+        // Create a scene and set it as the scene for the primary stage
+        Scene scene = new Scene(gridPane, 600, 400);
+        stage.setScene(scene);
 
-	    Scene scene = new Scene(root); // set the GridPane as the root of the scene
-	    stage.setScene(scene);
-	    stage.setWidth(600);
-	    stage.setHeight(400);
+        // Set the title of the primary stage
+        stage.setTitle("SnailSweeper");
 
-	    stage.setTitle("SnailSweeper");
-	    stage.show();
-	}
+        // Show the primary stage
+        stage.show();
+    }
 
-
-
-	public static void main(String[] args) {
-		launch();
-	}
-//	public static void main(String[] args) {
-//	    launch(JavaFxApp.class);
-//	}
-
-
+    public static void main(String[] args) {
+        launch(args);
+    }
 }

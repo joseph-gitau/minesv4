@@ -1,11 +1,6 @@
 package ch.bfh.bti3001.snailsweeper.apps;
 
 
-import ch.bfh.bti3001.snailsweeper.apps.BorderCell;
-import ch.bfh.bti3001.snailsweeper.apps.Cell;
-import ch.bfh.bti3001.snailsweeper.apps.CellState;
-import ch.bfh.bti3001.snailsweeper.apps.CellVisibility;
-
 import java.util.Scanner;
 import static java.lang.Integer.parseInt;
 
@@ -131,7 +126,7 @@ public class Grid {
 	// toggleFlag allows to change to a flagged State or to return to hidden state
 	// this method also runs on inverted parameters. (test related)
 
-	public void toggleFlag(int i, int j) {
+	private void toggleFlag(int i, int j) {
 		int x = i;
 		i=j;
 		j=x;
