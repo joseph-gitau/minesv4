@@ -58,6 +58,8 @@ public class JavaFxApp extends Application {
     }
 
     public static void main(String[] args) {
-        launch(args);
+        //launch(args);
+    	launch(new String[] { "10", "10" });
+
     }
 }

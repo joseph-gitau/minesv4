@@ -83,9 +83,6 @@ public class Grid {
 				switch (modelGrid[i][j].getCellState()){
 					case LIVING -> living++;
 					case CRUSHED -> crushed++;
-				case EMPTY -> throw new UnsupportedOperationException("Unimplemented case: " + modelGrid[i][j].getCellState());
-				case SOLID -> throw new UnsupportedOperationException("Unimplemented case: " + modelGrid[i][j].getCellState());
-				default -> throw new IllegalArgumentException("Unexpected value: " + modelGrid[i][j].getCellState());
 				}
 
 
@@ -212,13 +209,12 @@ public class Grid {
 		String entry = "  ";
 		int i =0;
 
-		try (Scanner sc = new Scanner(System.in)) {
-			System.out.println(printGrid());
+		Scanner sc = new Scanner(System.in);
+		System.out.println(printGrid());
 
-			while (entry.length()!=3|| !(entry.charAt(0) =='u') && !(entry.charAt(0)=='f')){
-				System.out.println(">");
-				entry = sc.next();
-			}
+		while (entry.length()!=3|| !(entry.charAt(0) =='u') && !(entry.charAt(0)=='f')){
+			System.out.println(">");
+			entry = sc.next();
 		}
 		for (int a =0; a < ALPHABETLOOKUP.length(); a++){
 			if (entry.charAt(1)==ALPHABETLOOKUP.charAt(a)){
@@ -255,9 +251,6 @@ public class Grid {
 							return false;
 						}
 					}
-				case CRUSHED -> throw new UnsupportedOperationException("Unimplemented case: " + cells[a].getCellState());
-				case SOLID -> throw new UnsupportedOperationException("Unimplemented case: " + cells[a].getCellState());
-				default -> throw new IllegalArgumentException("Unexpected value: " + cells[a].getCellState());
 				}
 			}
 		}
