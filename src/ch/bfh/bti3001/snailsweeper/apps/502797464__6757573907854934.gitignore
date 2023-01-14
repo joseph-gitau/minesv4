@@ -1,0 +1,13 @@
+**/.DS_Store
+.checkstyle
+.classpath
+.idea/
+.project
+.settings/
+bin/
+target/
+*.iml
+*.log
+*.synctex.gz
+*.aux
+*.out
